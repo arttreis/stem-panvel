@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Protocolo Saúde e Beleza — Colágeno Hidrolisado, Biotina Plus e HialuSkin. Ciência aplicada à sua rotina. Stem Farmacêutica.">
+  <title>Protocolo Saúde e Beleza | Stem Farmacêutica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    /* ============================================================
+       ROOT VARIABLES
+    ============================================================ */
+    :root {
+      --navy-deep:   #040D1A;
+      --navy:        #0A1628;
+      --navy-mid:    #0D1E35;
+      --blue-royal:  #1A3FDB;
+      --blue-bright: #2B5BEE;
+      --blue-sky:    #5AC8E8;
+      --blue-steel:  #4B6FA0;
+      --blue-light:  #B8C8E0;
+      --blue-ice:    #DCE8F5;
+      --white:       #FFFFFF;
+      --off-white:   #F8FAFF;
+      --text-dark:   #0A1628;
+      --text-muted:  rgba(255,255,255,0.65);
+
+      --grad-primary: linear-gradient(135deg, #1A3FDB 0%, #5AC8E8 100%);
+      --grad-hero:    linear-gradient(180deg, #040D1A 0%, #0A1628 100%);
+      --glass-bg:     rgba(255,255,255,0.04);
+      --glass-border: rgba(255,255,255,0.08);
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --nav-h:     72px;
+      --radius:    16px;
+      --pill:      50px;
+      --ease:      cubic-bezier(0.4, 0, 0.2, 1);
+      --transition: all 0.32s var(--ease);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--navy-deep);
+      color: #fff;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a   { text-decoration: none; color: inherit; }
+    ul  { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ============================================================
+       LAYOUT UTILITIES
+    ============================================================ */
+    .container {
+      width: min(1200px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+    .section-pad { padding: clamp(72px, 9vw, 120px) 0; }
+
+    /* eyebrow label */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px; height: 1.5px;
+      flex-shrink: 0;
+    }
+    .eyebrow--light { color: var(--blue-sky); }
+    .eyebrow--light::before { background: var(--blue-sky); }
+    .eyebrow--dark  { color: var(--blue-royal); }
+    .eyebrow--dark::before  { background: var(--blue-royal); }
+
+    /* section titles */
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 700;
+      line-height: 1.14;
+      letter-spacing: -0.022em;
+    }
+    .section-title--dark  { color: var(--text-dark); }
+    .section-title--light { color: #fff; }
+
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 30px;
+      border-radius: var(--pill);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .btn-lg { padding: 18px 40px; font-size: 16px; }
+
+    /* primary — gradient + shimmer */
+    .btn-primary {
+      background: var(--grad-primary);
+      color: #fff;
+      box-shadow: 0 4px 24px rgba(26,63,219,0.45);
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+      transition: left 0.6s ease;
+    }
+    .btn-primary:hover::after { left: 100%; }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 36px rgba(26,63,219,0.55);
+    }
+
+    /* outline */
+    .btn-outline {
+      border: 1.5px solid rgba(255,255,255,0.32);
+      color: #fff;
+      background: rgba(255,255,255,0.04);
+    }
+    .btn-outline:hover {
+      border-color: rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.09);
+      transform: translateY(-2px);
+    }
+
+    /* white */
+    .btn-white {
+      background: #fff;
+      color: var(--blue-royal);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.14);
+    }
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(0,0,0,0.2);
+    }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible       { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+    }
+    .navbar.scrolled {
+      background: rgba(4,13,26,0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 1px 0 var(--glass-border);
+    }
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    /* logo */
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .nav-logo-img  { height: 38px; width: auto; }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-name {
+      font-family: var(--font-body);
+      font-size: 20px; font-weight: 700;
+      color: #fff; letter-spacing: -0.02em;
+    }
+    .nav-logo-sub {
+      font-size: 9px; font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue-sky);
+      margin-top: 2px;
+    }
+
+    /* links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+    .nav-links a {
+      font-size: 14px; font-weight: 500;
+      color: rgba(255,255,255,0.72);
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--blue-sky);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover         { color: #fff; }
+    .nav-links a:hover::after  { width: 100%; }
+
+    .nav-actions { display: flex; align-items: center; gap: 16px; }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      width: 28px;
+      padding: 2px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .hamburger span {
+      display: block;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* mobile overlay */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: var(--nav-h); left: 0; right: 0;
+      background: rgba(4,13,26,0.97);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-top: 1px solid var(--glass-border);
+      padding: 28px 24px 32px;
+      flex-direction: column;
+      gap: 4px;
+      z-index: 999;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-size: 17px; font-weight: 500;
+      color: rgba(255,255,255,0.78);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--glass-border);
+      transition: color 0.2s;
+    }
+    .mobile-nav a:last-child { border-bottom: none; }
+    .mobile-nav a:hover { color: #fff; }
+    .mobile-nav .btn { margin-top: 20px; justify-content: center; }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      min-height: 100svh;
+      background: var(--grad-hero);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      padding-top: var(--nav-h);
+    }
+
+    /* grain overlay */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* grid pattern */
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(90,200,232,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(90,200,232,0.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+      z-index: 1;
+    }
+
+    /* orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      pointer-events: none;
+      will-change: transform;
+    }
+    .orb-1 {
+      width: clamp(300px,45vw,580px);
+      height: clamp(300px,45vw,580px);
+      top: -12%; right: -6%;
+      background: radial-gradient(circle, rgba(26,63,219,0.46) 0%, transparent 70%);
+      animation: orb1 14s ease-in-out infinite;
+    }
+    .orb-2 {
+      width: clamp(260px,38vw,480px);
+      height: clamp(260px,38vw,480px);
+      bottom: 2%; left: -6%;
+      background: radial-gradient(circle, rgba(90,200,232,0.32) 0%, transparent 70%);
+      animation: orb2 18s ease-in-out infinite;
+    }
+    .orb-3 {
+      width: clamp(140px,18vw,260px);
+      height: clamp(140px,18vw,260px);
+      top: 44%; right: 28%;
+      background: radial-gradient(circle, rgba(43,91,238,0.24) 0%, transparent 70%);
+      animation: orb3 11s ease-in-out infinite;
+    }
+    @keyframes orb1 {
+      0%,100% { transform: translate(0,0) scale(1); }
+      33%      { transform: translate(-28px,44px) scale(1.06); }
+      66%      { transform: translate(20px,-22px) scale(0.94); }
+    }
+    @keyframes orb2 {
+      0%,100% { transform: translate(0,0); }
+      50%      { transform: translate(44px,-64px) scale(1.1); }
+    }
+    @keyframes orb3 {
+      0%,100% { transform: translate(0,0); }
+      33%      { transform: translate(22px,28px); }
+      66%      { transform: translate(-16px,-12px); }
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 2;
+      padding-top:    clamp(60px,8vh,100px);
+      padding-bottom: clamp(80px,10vh,120px);
+    }
+    .hero-inner { max-width: 720px; }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(90,200,232,0.22);
+      backdrop-filter: blur(12px);
+      padding: 8px 18px;
+      border-radius: var(--pill);
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--blue-sky);
+      margin-bottom: 32px;
+    }
+    .hero-pill i { font-size: 12px; }
+
+    .hero-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(38px,5.5vw,72px);
+      font-weight: 700;
+      line-height: 1.08;
+      color: #fff;
+      margin-bottom: 24px;
+      letter-spacing: -0.025em;
+    }
+    .hero-subtitle {
+      font-family: var(--font-display);
+      font-size: clamp(15px,2vw,20px);
+      font-style: italic;
+      color: var(--blue-sky);
+      margin-bottom: 22px;
+    }
+    .hero-body {
+      font-size: clamp(14px,1.5vw,16px);
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 48px;
+      max-width: 580px;
+    }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* floating badge */
+    .hero-badge {
+      position: absolute;
+      right: clamp(16px,6vw,100px);
+      top: 50%;
+      transform: translateY(-24%);
+      background: rgba(13,30,53,0.88);
+      border: 1px solid rgba(90,200,232,0.22);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 16px;
+      padding: 20px 22px;
+      z-index: 3;
+      animation: badge-float 7s ease-in-out infinite;
+      max-width: 196px;
+    }
+    @keyframes badge-float {
+      0%,100% { transform: translateY(-24%); }
+      50%      { transform: translateY(-24%) translateY(-14px); }
+    }
+    .hero-badge-icon  { font-size: 28px; margin-bottom: 10px; }
+    .hero-badge-title { font-size: 13px; font-weight: 700; color: #fff; line-height: 1.35; margin-bottom: 4px; }
+    .hero-badge-sub   { font-size: 11px; color: var(--blue-sky); letter-spacing: 0.05em; }
+
+    /* scroll cue */
+    .scroll-cue {
+      position: absolute;
+      bottom: 36px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .scroll-cue-label {
+      font-size: 10px; letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+    .scroll-cue-arrow {
+      width: 18px; height: 18px;
+      border-right: 1.5px solid rgba(255,255,255,0.3);
+      border-bottom: 1.5px solid rgba(255,255,255,0.3);
+      transform: rotate(45deg);
+      animation: bounce 2s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%,100% { transform: rotate(45deg) translate(0,0); opacity:.6; }
+      50%      { transform: rotate(45deg) translate(3px,3px); opacity:1; }
+    }
+
+    /* ============================================================
+       SECTION: PROTOCOLO OVERVIEW  (white bg)
+    ============================================================ */
+    .s-protocolo { background: var(--white); }
+
+    .protocolo-header { text-align: center; margin-bottom: 60px; }
+
+    .protocolo-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 24px;
+    }
+    .proto-card {
+      background: var(--off-white);
+      border: 1.5px solid var(--blue-ice);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .proto-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--grad-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .proto-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--blue-light);
+      box-shadow: 0 16px 48px rgba(26,63,219,0.1);
+    }
+    .proto-card:hover::after { transform: scaleX(1); }
+
+    .proto-icon {
+      width: 56px; height: 56px;
+      background: var(--blue-ice);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .proto-icon svg { width: 26px; height: 26px; }
+    .proto-name {
+      font-family: var(--font-display);
+      font-size: 19px; font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 10px; line-height: 1.3;
+    }
+    .proto-benefit {
+      font-size: 14px; color: var(--blue-steel);
+      line-height: 1.65; margin-bottom: 22px;
+    }
+    .proto-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 700;
+      color: var(--blue-royal);
+      transition: gap 0.2s;
+    }
+    .proto-link:hover { gap: 10px; }
+
+    /* ============================================================
+       SECTION: PRODUTOS  (alternating dark / light)
+    ============================================================ */
+    .s-produto { padding: clamp(72px,9vw,120px) 0; }
+    .s-produto--dark  { background: var(--navy); }
+    .s-produto--light { background: var(--white); }
+
+    .produto-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(48px,6vw,96px);
+      align-items: center;
+    }
+    .produto-wrap--rev .produto-vis { order: -1; }
+
+    /* text side */
+    .produto-title {
+      font-family: var(--font-display);
+      font-size: clamp(30px,3.5vw,48px);
+      font-weight: 700;
+      line-height: 1.12;
+      margin-bottom: 18px;
+      letter-spacing: -0.025em;
+    }
+    .s-produto--dark  .produto-title { color: #fff; }
+    .s-produto--light .produto-title { color: var(--text-dark); }
+
+    .produto-intro { font-size: 16px; line-height: 1.8; margin-bottom: 30px; }
+    .s-produto--dark  .produto-intro { color: var(--text-muted); }
+    .s-produto--light .produto-intro { color: var(--blue-steel); }
+
+    .benefit-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+    .benefit-row  { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; line-height: 1.55; }
+    .s-produto--dark  .benefit-row { color: rgba(255,255,255,0.82); }
+    .s-produto--light .benefit-row { color: var(--text-dark); }
+
+    .benefit-dot {
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    .s-produto--dark  .benefit-dot { background: rgba(90,200,232,0.12); border: 1px solid rgba(90,200,232,0.28); }
+    .s-produto--light .benefit-dot { background: var(--blue-ice); border: 1px solid var(--blue-light); }
+    .benefit-dot i { font-size: 9px; color: var(--blue-sky); }
+    .s-produto--light .benefit-dot i { color: var(--blue-royal); }
+
+    .produto-closing {
+      font-size: 15px; font-style: italic; line-height: 1.7;
+      padding-left: 16px;
+      border-left: 2px solid var(--blue-sky);
+    }
+    .s-produto--dark  .produto-closing { color: var(--text-muted); }
+    .s-produto--light .produto-closing { color: var(--blue-steel); border-left-color: var(--blue-royal); }
+
+    /* visual side */
+    .produto-vis { position: relative; display: flex; align-items: center; justify-content: center; }
+
+    .vis-box {
+      position: relative;
+      width: clamp(260px,28vw,380px);
+      aspect-ratio: 1;
+      border-radius: 28px;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Colágeno visual */
+    .vis-colageno {
+      background:
+        radial-gradient(ellipse at 25% 25%, rgba(90,200,232,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 75%, rgba(26,63,219,0.22) 0%, transparent 55%),
+        linear-gradient(140deg, #091525 0%, #0D1E35 100%);
+      border: 1px solid rgba(90,200,232,0.14);
+    }
+    .vis-colageno::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        55deg, transparent, transparent 30px,
+        rgba(90,200,232,0.04) 30px, rgba(90,200,232,0.04) 32px
+      );
+    }
+
+    /* Biotina visual */
+    .vis-biotina {
+      background: linear-gradient(140deg, var(--off-white) 0%, var(--blue-ice) 100%);
+      border: 1.5px solid var(--blue-ice);
+    }
+
+    /* HialuSkin visual */
+    .vis-hialuskin {
+      background:
+        radial-gradient(ellipse at 35% 20%, rgba(26,63,219,0.28) 0%, transparent 55%),
+        radial-gradient(ellipse at 65% 80%, rgba(90,200,232,0.22) 0%, transparent 55%),
+        linear-gradient(180deg, #091525 0%, #0A1628 100%);
+      border: 1px solid rgba(90,200,232,0.12);
+    }
+    .vis-hialuskin::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(90,200,232,0.07) 0%, transparent 60%);
+    }
+
+    /* inner art layout */
+    .prod-art {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 14px;
+      padding: 32px; text-align: center;
+    }
+
+    /* ---- Helix art (Colágeno) ---- */
+    .art-helix { width: 100px; height: 100px; position: relative; }
+    .helix-r {
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      border: 1.5px solid;
+      animation: spin linear infinite;
+    }
+    .helix-r:nth-child(1) { border-color: rgba(90,200,232,0.65); animation-duration: 7s; }
+    .helix-r:nth-child(2) { inset: 14px; border-color: rgba(26,63,219,0.55); animation-duration: 4.5s; animation-direction: reverse; }
+    .helix-r:nth-child(3) { inset: 28px; border-color: rgba(90,200,232,0.45); animation-duration: 3s; }
+    .helix-core {
+      position: absolute; inset: 40px;
+      border-radius: 50%;
+      background: var(--grad-primary);
+      box-shadow: 0 0 22px rgba(90,200,232,0.5);
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ---- Molecule art (Biotina) ---- */
+    .art-mol { width: 108px; height: 108px; position: relative; }
+    .mol-c {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--grad-primary);
+      box-shadow: 0 0 16px rgba(26,63,219,0.45);
+    }
+    .mol-a {
+      position: absolute;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-royal), var(--blue-sky));
+      box-shadow: 0 0 10px rgba(26,63,219,0.35);
+    }
+    .mol-a:nth-child(2) { top: 4px; left: 50%; transform: translateX(-50%); }
+    .mol-a:nth-child(3) { top: 50%; right: 4px; transform: translateY(-50%); }
+    .mol-a:nth-child(4) { bottom: 4px; left: 50%; transform: translateX(-50%); }
+    .mol-a:nth-child(5) { top: 50%; left: 4px; transform: translateY(-50%); }
+    .mol-a:nth-child(6) { top: 15px; left: 15px; width: 14px; height: 14px; }
+    .mol-a:nth-child(7) { top: 15px; right: 15px; width: 14px; height: 14px; }
+    .mol-bond {
+      position: absolute; top: 50%; left: 50%;
+      height: 1.5px; width: 38px;
+      background: linear-gradient(90deg, rgba(26,63,219,0.5), transparent);
+      transform-origin: left center;
+    }
+    .mol-bond:nth-child(8)  { transform: translateY(-50%) rotate(0deg); }
+    .mol-bond:nth-child(9)  { transform: translateY(-50%) rotate(90deg); }
+    .mol-bond:nth-child(10) { transform: translateY(-50%) rotate(180deg); }
+    .mol-bond:nth-child(11) { transform: translateY(-50%) rotate(270deg); }
+
+    /* ---- Droplet art (HialuSkin) ---- */
+    .art-drop { width: 76px; height: 96px; animation: drop-float 4s ease-in-out infinite; }
+    .drop-shape {
+      width: 100%; height: 100%;
+      background: linear-gradient(180deg, rgba(90,200,232,0.85) 0%, rgba(26,63,219,0.95) 100%);
+      border-radius: 50% 50% 50% 50% / 38% 38% 62% 62%;
+      position: relative; overflow: hidden;
+      box-shadow: 0 0 34px rgba(90,200,232,0.45), inset 0 -12px 24px rgba(26,63,219,0.35);
+    }
+    .drop-shine {
+      position: absolute; top: 14%; left: 18%;
+      width: 28%; height: 32%;
+      background: rgba(255,255,255,0.38);
+      border-radius: 50%; filter: blur(4px);
+    }
+    @keyframes drop-float {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+
+    /* product typography inside vis-box */
+    .prod-sku  { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+    .prod-name { font-family: var(--font-display); font-size: 20px; font-weight: 600; line-height: 1.2; }
+    .vis-colageno .prod-sku,  .vis-hialuskin .prod-sku  { color: rgba(90,200,232,0.75); }
+    .vis-biotina  .prod-sku  { color: var(--blue-steel); }
+    .vis-colageno .prod-name, .vis-hialuskin .prod-name { color: #fff; }
+    .vis-biotina  .prod-name { color: var(--text-dark); }
+
+    .prod-tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 5px 12px; border-radius: var(--pill);
+      font-size: 11px; font-weight: 600;
+    }
+    .vis-colageno .prod-tag, .vis-hialuskin .prod-tag {
+      background: rgba(90,200,232,0.1); border: 1px solid rgba(90,200,232,0.18);
+      color: var(--blue-sky);
+    }
+    .vis-biotina .prod-tag {
+      background: var(--blue-ice); border: 1px solid var(--blue-light);
+      color: var(--blue-royal);
+    }
+
+    /* floating stat badge */
+    .stat-badge {
+      position: absolute; bottom: 16px; right: -8px;
+      border-radius: 12px; padding: 10px 14px; min-width: 148px;
+    }
+    .stat-badge--dark {
+      background: rgba(9,21,37,0.96);
+      border: 1px solid rgba(90,200,232,0.16);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.3);
+    }
+    .stat-badge--light { background: #fff; box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .stat-badge-lbl {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 3px;
+    }
+    .stat-badge--dark  .stat-badge-lbl { color: var(--blue-sky); }
+    .stat-badge--light .stat-badge-lbl { color: var(--blue-steel); }
+    .stat-badge-val { font-size: 15px; font-weight: 700; }
+    .stat-badge--dark  .stat-badge-val { color: #fff; }
+    .stat-badge--light .stat-badge-val { color: var(--text-dark); }
+
+    /* ============================================================
+       SECTION: PARA QUEM É  (off-white)
+    ============================================================ */
+    .s-para-quem { background: var(--off-white); }
+    .para-quem-hd { text-align: center; margin-bottom: 52px; }
+
+    .pq-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 14px;
+      margin-bottom: 52px;
+    }
+    .pq-card {
+      background: #fff;
+      border: 1.5px solid var(--blue-ice);
+      border-radius: 14px;
+      padding: 22px 26px;
+      display: flex; align-items: center; gap: 16px;
+      transition: var(--transition);
+    }
+    .pq-card:hover {
+      border-color: var(--blue-light);
+      box-shadow: 0 8px 28px rgba(26,63,219,0.08);
+      transform: translateY(-2px);
+    }
+    .pq-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: var(--blue-ice);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .pq-icon i {
+      font-size: 17px;
+      background: var(--grad-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .pq-text { font-size: 15px; font-weight: 500; color: var(--text-dark); line-height: 1.45; }
+    .pq-cta { text-align: center; }
+    .pq-cta-tagline {
+      font-family: var(--font-display);
+      font-size: 22px; font-style: italic;
+      color: var(--blue-steel);
+      margin-bottom: 24px;
+    }
+
+    /* ============================================================
+       SECTION: MODO DE USO  (navy-mid)
+    ============================================================ */
+    .s-uso { background: var(--navy-mid); }
+    .uso-hd { text-align: center; margin-bottom: 60px; }
+
+    .uso-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 22px;
+      margin-bottom: 36px;
+    }
+    .uso-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 34px 26px 30px;
+      position: relative;
+      transition: var(--transition);
+    }
+    .uso-card:hover {
+      border-color: rgba(90,200,232,0.22);
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.25);
+    }
+    .uso-step-n {
+      font-family: var(--font-display);
+      font-size: 72px; font-weight: 700;
+      color: rgba(90,200,232,0.08);
+      line-height: 1;
+      position: absolute; top: 16px; right: 20px;
+    }
+    .uso-eyebrow {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--blue-sky);
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .uso-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 16px; height: 1.5px;
+      background: var(--blue-sky);
+    }
+    .uso-instruction { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.7; }
+    .uso-badge {
+      margin-top: 18px;
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(26,63,219,0.14);
+      border: 1px solid rgba(26,63,219,0.24);
+      padding: 5px 12px; border-radius: 20px;
+      font-size: 12px; font-weight: 600; color: var(--blue-sky);
+    }
+    .uso-note {
+      text-align: center; font-size: 14px; font-style: italic;
+      color: var(--text-muted);
+      padding-top: 24px;
+      border-top: 1px solid var(--glass-border);
+      max-width: 640px; margin: 0 auto;
+    }
+
+    /* ============================================================
+       SECTION: STATS  (white)
+    ============================================================ */
+    .s-stats { background: var(--white); }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 24px;
+      margin-bottom: 44px;
+    }
+    .stat-box {
+      text-align: center;
+      padding: 36px 20px;
+      border-radius: var(--radius);
+      background: var(--off-white);
+      border: 1.5px solid var(--blue-ice);
+      transition: var(--transition);
+    }
+    .stat-box:hover {
+      border-color: var(--blue-light);
+      box-shadow: 0 10px 32px rgba(26,63,219,0.09);
+      transform: translateY(-5px);
+    }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: clamp(38px,4.5vw,58px);
+      font-weight: 700;
+      background: var(--grad-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1; margin-bottom: 10px;
+    }
+    .stat-desc { font-size: 14px; font-weight: 500; color: var(--blue-steel); line-height: 1.4; }
+    .stats-about {
+      text-align: center; max-width: 680px; margin: 0 auto;
+      font-size: 15px; color: var(--blue-steel); line-height: 1.75;
+    }
+
+    /* ============================================================
+       SECTION: FAQ  (navy-deep)
+    ============================================================ */
+    .s-faq { background: var(--navy-deep); }
+    .faq-hd { text-align: center; margin-bottom: 52px; }
+
+    .faq-wrap {
+      max-width: 800px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .faq-item {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .faq-item.open { border-color: rgba(90,200,232,0.22); }
+    .faq-btn {
+      width: 100%;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 22px 24px;
+      font-size: 15px; font-weight: 500; color: #fff;
+      text-align: left;
+      transition: color 0.2s;
+    }
+    .faq-btn:hover        { color: var(--blue-sky); }
+    .faq-item.open .faq-btn { color: var(--blue-sky); }
+
+    .faq-icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(90,200,232,0.3);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+    .faq-icon i { font-size: 11px; color: var(--blue-sky); transition: transform 0.35s ease; }
+    .faq-item.open .faq-icon   { background: rgba(90,200,232,0.1); }
+    .faq-item.open .faq-icon i { transform: rotate(45deg); }
+
+    .faq-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.42s cubic-bezier(0.4,0,0.2,1);
+    }
+    .faq-body-inner {
+      padding: 16px 24px 22px;
+      font-size: 14px; color: var(--text-muted); line-height: 1.75;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    /* ============================================================
+       SECTION: CTA FINAL
+    ============================================================ */
+    .s-cta {
+      background: linear-gradient(140deg, #091525 0%, #1032B4 52%, #0A2058 100%);
+      padding: clamp(80px,10vw,140px) 0;
+      position: relative; overflow: hidden;
+      text-align: center;
+    }
+    .s-cta::before {
+      content: '';
+      position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 500px;
+      background: radial-gradient(ellipse, rgba(90,200,232,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .s-cta::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        45deg, transparent, transparent 40px,
+        rgba(255,255,255,0.012) 40px, rgba(255,255,255,0.012) 41px
+      );
+    }
+    .s-cta .container { position: relative; z-index: 1; }
+
+    .cta-eyebrow {
+      display: flex; justify-content: center;
+      margin-bottom: 20px;
+      opacity: 0.7;
+    }
+    .cta-title {
+      font-family: var(--font-display);
+      font-size: clamp(26px,4vw,50px);
+      font-weight: 700; color: #fff;
+      max-width: 720px; margin: 0 auto 44px;
+      line-height: 1.22; letter-spacing: -0.02em;
+    }
+    .cta-btns {
+      display: flex; gap: 18px; justify-content: center;
+      flex-wrap: wrap; margin-bottom: 28px;
+    }
+    .cta-tagline { font-size: 14px; color: rgba(255,255,255,0.5); font-style: italic; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      background: var(--navy-deep);
+      border-top: 1px solid var(--glass-border);
+      padding: 72px 0 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr repeat(3,1fr);
+      gap: 48px; margin-bottom: 56px;
+    }
+    .footer-logo-row {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+    }
+    .footer-logo-img   { height: 30px; width: auto; }
+    .footer-brand-name { font-size: 18px; font-weight: 700; color: #fff; }
+    .footer-brand-sub  { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-sky); }
+    .footer-mission {
+      font-size: 13px; color: rgba(255,255,255,0.48);
+      line-height: 1.72; max-width: 270px; margin-bottom: 22px;
+    }
+    .footer-social { display: flex; gap: 10px; }
+    .footer-social a {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 1px solid var(--glass-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: rgba(255,255,255,0.45);
+      transition: var(--transition);
+    }
+    .footer-social a:hover {
+      border-color: rgba(90,200,232,0.38);
+      color: var(--blue-sky); background: rgba(90,200,232,0.07);
+    }
+    .footer-col-title {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--blue-sky); margin-bottom: 18px;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 9px; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); transition: color 0.2s; line-height: 1.5; }
+    .footer-links a:hover { color: #fff; }
+    .footer-contact-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 13px; color: rgba(255,255,255,0.5);
+      line-height: 1.6; margin-bottom: 11px;
+    }
+    .footer-contact-row i { font-size: 13px; color: var(--blue-sky); flex-shrink: 0; margin-top: 2px; }
+    .footer-bottom {
+      border-top: 1px solid var(--glass-border);
+      padding-top: 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 14px; flex-wrap: wrap;
+    }
+    .footer-copy  { font-size: 12px; color: rgba(255,255,255,0.28); }
+    .footer-anvisa {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 11px; color: rgba(255,255,255,0.36);
+    }
+    .footer-anvisa i { color: var(--blue-sky); font-size: 13px; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .protocolo-grid { gap: 16px; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --nav-h: 64px; }
+      .nav-links, .nav-actions .btn { display: none; }
+      .hamburger { display: flex; }
+      .hero-badge { display: none; }
+      .protocolo-grid { grid-template-columns: 1fr; }
+      .produto-wrap { grid-template-columns: 1fr; gap: 40px; }
+      .produto-wrap--rev .produto-vis { order: 0; }
+      .vis-box { width: 240px; }
+      .pq-grid { grid-template-columns: 1fr; }
+      .pq-card--full { grid-column: 1; }
+      .uso-grid { grid-template-columns: 1fr; gap: 14px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .hero-ctas { flex-direction: column; }
+      .hero-ctas .btn { width: 100%; justify-content: center; }
+    }
+
+    @media (max-width: 480px) {
+      .cta-btns { flex-direction: column; align-items: center; }
+      .cta-btns .btn { width: 100%; justify-content: center; max-width: 340px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========================================================
+     NAVBAR
+======================================================== -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="#home" class="nav-logo">
+      <img src="assets/logo-branco.png" alt="Stem Farmacêutica" class="nav-logo-img">
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">STEM</span>
+        <span class="nav-logo-sub">Farmacêutica</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#protocolo">Protocolo</a></li>
+      <li><a href="#produtos">Produtos</a></li>
+      <li><a href="#como-usar">Como Usar</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="#cta-final" class="btn btn-primary">Adquirir Agora</a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#protocolo">Protocolo</a>
+  <a href="#produtos">Produtos</a>
+  <a href="#como-usar">Como Usar</a>
+  <a href="#faq">FAQ</a>
+  <a href="#cta-final" class="btn btn-primary">Adquirir Agora</a>
+</nav>
+
+
+<!-- ========================================================
+     HERO
+======================================================== -->
+<section class="hero" id="home">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="hero-grid"></div>
+
+  <!-- Floating science badge -->
+  <div class="hero-badge">
+    <div class="hero-badge-icon">⚗</div>
+    <div class="hero-badge-title">Formulado com ciência</div>
+    <div class="hero-badge-sub">Certificado ANVISA</div>
+  </div>
+
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-pill">
+        <i class="fa-solid fa-flask-vial"></i>
+        Protocolo Saúde e Beleza — Stem Farmacêutica
+      </div>
+
+      <h1 class="hero-h1">
+        Cuidar de você hoje é o que permite viver o seu melhor amanhã
+      </h1>
+
+      <p class="hero-subtitle">
+        Protocolo Saúde e Beleza — ciência aplicada à sua rotina.
+      </p>
+
+      <p class="hero-body">
+        O Protocolo Saúde e Beleza une ativos que ajudam a sustentar a estrutura e a firmeza da pele, favorecem a hidratação que vem de dentro e oferecem suporte antioxidante para o dia a dia.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="#cta-final" class="btn btn-primary btn-lg">
+          <i class="fa-solid fa-bag-shopping"></i> Adquirir na Panvel
+        </a>
+        <a href="#" class="btn btn-outline btn-lg">
+          Ver na Loja Virtual <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-cue">
+    <span class="scroll-cue-label">Explorar</span>
+    <div class="scroll-cue-arrow"></div>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     PROTOCOLO OVERVIEW
+======================================================== -->
+<section class="s-protocolo section-pad" id="protocolo">
+  <div class="container">
+    <div class="protocolo-header reveal">
+      <span class="eyebrow eyebrow--dark">O Protocolo</span>
+      <h2 class="section-title section-title--dark">Um protocolo pensado para você inteira</h2>
+    </div>
+
+    <div class="protocolo-grid">
+      <div class="proto-card reveal">
+        <div class="proto-icon">
+          <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 3C13 3 7 7.5 7 14C7 20.5 13 24 13 24C13 24 19 20.5 19 14C19 7.5 13 3 13 3Z" stroke="#1A3FDB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7 14H19" stroke="#5AC8E8" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="13" cy="14" r="3" stroke="#1A3FDB" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <h3 class="proto-name">Colágeno Hidrolisado em Pó</h3>
+        <p class="proto-benefit">A base estrutural que sustenta firmeza e elasticidade da pele, unhas e articulações.</p>
+        <a href="#produto-colageno" class="proto-link">Saiba mais <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="proto-card reveal reveal-d1">
+        <div class="proto-icon">
+          <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="13" cy="13" r="4.5" stroke="#1A3FDB" stroke-width="1.5"/>
+            <circle cx="13" cy="4.5" r="2"   stroke="#5AC8E8" stroke-width="1.5"/>
+            <circle cx="13" cy="21.5" r="2"  stroke="#5AC8E8" stroke-width="1.5"/>
+            <circle cx="4.5" cy="13" r="2"   stroke="#5AC8E8" stroke-width="1.5"/>
+            <circle cx="21.5" cy="13" r="2"  stroke="#5AC8E8" stroke-width="1.5"/>
+            <line x1="13" y1="8.5"  x2="13" y2="6.5"  stroke="#4B6FA0" stroke-width="1.2"/>
+            <line x1="13" y1="19.5" x2="13" y2="17.5" stroke="#4B6FA0" stroke-width="1.2"/>
+            <line x1="8.5"  y1="13" x2="6.5"  y2="13" stroke="#4B6FA0" stroke-width="1.2"/>
+            <line x1="19.5" y1="13" x2="17.5" y2="13" stroke="#4B6FA0" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <h3 class="proto-name">Biotina Plus</h3>
+        <p class="proto-benefit">Suporte antioxidante que fortalece cabelos, unhas e favorece a formação de colágeno.</p>
+        <a href="#produto-biotina" class="proto-link">Saiba mais <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="proto-card reveal reveal-d2">
+        <div class="proto-icon">
+          <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 4C13 4 6.5 11 6.5 17C6.5 20.59 9.41 23.5 13 23.5C16.59 23.5 19.5 20.59 19.5 17C19.5 11 13 4 13 4Z" stroke="#1A3FDB" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M9.5 18.5C10 20.5 11.5 22 13 22" stroke="#5AC8E8" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="proto-name">HialuSkin Ácido Hialurônico</h3>
+        <p class="proto-benefit">Hidratação profunda de dentro para fora — pele mais firme, suave e com viço renovado.</p>
+        <a href="#produto-hialuskin" class="proto-link">Saiba mais <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     PRODUTO 1 — COLÁGENO  (dark)
+======================================================== -->
+<section class="s-produto s-produto--dark section-pad" id="produtos">
+  <div class="container" id="produto-colageno">
+    <div class="produto-wrap">
+
+      <div class="produto-content reveal">
+        <span class="eyebrow eyebrow--light">01 — Colágeno</span>
+        <h2 class="produto-title">A base que sustenta tudo</h2>
+        <p class="produto-intro">Incluir o colágeno na sua rotina é um gesto simples que sustenta o seu cuidado por dentro.</p>
+        <ul class="benefit-list">
+          <li class="benefit-row"><span class="benefit-dot"><i class="fa-solid fa-check"></i></span>Apoia a firmeza e a elasticidade da pele</li>
+          <li class="benefit-row"><span class="benefit-dot"><i class="fa-solid fa-check"></i></span>Contribui para prevenir a flacidez com constância</li>
+          <li class="benefit-row"><span class="benefit-dot"><i class="fa-solid fa-check"></i></span>Fortalece unhas e cabelos no dia a dia</li>
+          <li class="benefit-row"><span class="benefit-dot"><i class="fa-solid fa-check"></i></span>Ajuda na saúde das articulações e na estrutura óssea</li>
+        </ul>
+        <p class="produto-closing">"É sobre manter a base forte enquanto você vive tudo o que importa."</p>
+      </div>
+
+      <div class="produto-vis reveal reveal-d2">
+        <div class="vis-box vis-colageno">
+          <div class="prod-art">
+            <div class="art-helix">
+              <div class="helix-r"></div>
+              <div class="helix-r"></div>
+              <div class="helix-r"></div>
+              <div class="helix-core"></div>
+            </div>
+            <span class="prod-sku">200g em pó</span>
+            <span class="prod-name">Colágeno<br>Hidrolisado</span>
+            <span class="prod-tag"><i class="fa-solid fa-flask"></i> Hidrolisado</span>
+          </div>
+        </div>
+        <div class="stat-badge stat-badge--dark">
+          <div class="stat-badge-lbl">Resultado visível</div>
+          <div class="stat-badge-val">8 a 12 semanas</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     PRODUTO 2 — BIOTINA PLUS  (light)
+======================================================== -->
+<section class="s-produto s-produto--light section-pad" id="produto-biotina">
+  <div class="container">
+    <div class="produto-wrap produto-wrap--rev">
+
+      <div class="produto-content reveal">
+        <span class="eyebrow eyebrow--dark">02 — Biotina Plus</span>
+        <h2 class="produto-title">O cuidado que trabalha em silêncio</h2>
+        <p class="produto-intro">Alguns cuidados não aparecem na hora, mas fazem toda diferença com o tempo.</p>
+        <ul class="benefit-list">
+          <li class="benefit-row"><span class="benefit-dot"><i class="fa-solid fa-check"></i></span>Cabelos mais resistentes no dia a dia</li>
+          <li class="benefit-row"><span class="benefit-dot"><i class="fa-solid fa-check"></i></span>Unhas menos quebradiças</li>
+          <li class="benefit-row"><span class="benefit-dot"><i class="fa-solid fa-check"></i></span>Formação saudável de colágeno e elastina</li>
+          <li class="benefit-row"><span class="benefit-dot"><i class="fa-solid fa-check"></i></span>Suporte antioxidante com zinco e selênio</li>
+          <li class="benefit-row"><span class="benefit-dot"><i class="fa-solid fa-check"></i></span>Saúde de ossos e articulações</li>
+        </ul>
+        <p class="produto-closing">"É um cuidado que respeita o seu ritmo e acompanha cada fase da sua vida."</p>
+      </div>
+
+      <div class="produto-vis reveal">
+        <div class="vis-box vis-biotina">
+          <div class="prod-art">
+            <div class="art-mol">
+              <div class="mol-c"></div>
+              <div class="mol-a"></div>
+              <div class="mol-a"></div>
+              <div class="mol-a"></div>
+              <div class="mol-a"></div>
+              <div class="mol-a"></div>
+              <div class="mol-a"></div>
+              <div class="mol-bond"></div>
+              <div class="mol-bond"></div>
+              <div class="mol-bond"></div>
+              <div class="mol-bond"></div>
+            </div>
+            <span class="prod-sku">60 comprimidos</span>
+            <span class="prod-name">Biotina Plus</span>
+            <span class="prod-tag"><i class="fa-solid fa-leaf"></i> Com Zinco e Selênio</span>
+          </div>
+        </div>
+        <div class="stat-badge stat-badge--light">
+          <div class="stat-badge-lbl">Formato</div>
+          <div class="stat-badge-val">Comprimido</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     PRODUTO 3 — HIALUSKIN  (dark)
+======================================================== -->
+<section class="s-produto s-produto--dark section-pad" id="produto-hialuskin">
+  <div class="container">
+    <div class="produto-wrap">
+
+      <div class="produto-content reveal">
+        <span class="eyebrow eyebrow--light">03 — HialuSkin</span>
+        <h2 class="produto-title">Hidratação que começa por dentro</h2>
+        <p class="produto-intro">Hidratar é devolver à pele aquela sensação de conforto que você sente no espelho e no toque.</p>
+        <ul class="benefit-list">
+          <li class="benefit-row"><span class="benefit-dot"><i class="fa-solid fa-check"></i></span>Pele mais hidratada e com toque mais suave</li>
+          <li class="benefit-row"><span class="benefit-dot"><i class="fa-solid fa-check"></i></span>Aparência mais firme no dia a dia</li>
+          <li class="benefit-row"><span class="benefit-dot"><i class="fa-solid fa-check"></i></span>Redução da percepção de linhas</li>
+          <li class="benefit-row"><span class="benefit-dot"><i class="fa-solid fa-check"></i></span>Suporte à saúde das articulações</li>
+        </ul>
+        <p class="produto-closing">"É o cuidado que preserva o viço, sustenta a elasticidade e mantém sua pele viva por dentro."</p>
+      </div>
+
+      <div class="produto-vis reveal reveal-d2">
+        <div class="vis-box vis-hialuskin">
+          <div class="prod-art">
+            <div class="art-drop">
+              <div class="drop-shape">
+                <div class="drop-shine"></div>
+              </div>
+            </div>
+            <span class="prod-sku">30 comprimidos</span>
+            <span class="prod-name">HialuSkin</span>
+            <span class="prod-tag"><i class="fa-solid fa-droplet"></i> Ácido Hialurônico</span>
+          </div>
+        </div>
+        <div class="stat-badge stat-badge--dark">
+          <div class="stat-badge-lbl">Ação</div>
+          <div class="stat-badge-val">De dentro para fora</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     PARA QUEM É
+======================================================== -->
+<section class="s-para-quem section-pad">
+  <div class="container">
+    <div class="para-quem-hd reveal">
+      <span class="eyebrow eyebrow--dark">Para Quem É</span>
+      <h2 class="section-title section-title--dark">Para quem entende que presença começa com cuidado.</h2>
+    </div>
+
+    <div class="pq-grid">
+      <div class="pq-card reveal">
+        <div class="pq-icon"><i class="fa-solid fa-users"></i></div>
+        <span class="pq-text">Mulheres e homens a partir dos 25 anos</span>
+      </div>
+      <div class="pq-card reveal reveal-d1">
+        <div class="pq-icon"><i class="fa-solid fa-spa"></i></div>
+        <span class="pq-text">Quem busca firmeza, hidratação e elasticidade</span>
+      </div>
+      <div class="pq-card reveal reveal-d2">
+        <div class="pq-icon"><i class="fa-solid fa-eye"></i></div>
+        <span class="pq-text">Quem já percebe mudanças naturais da pele</span>
+      </div>
+      <div class="pq-card reveal">
+        <div class="pq-icon"><i class="fa-solid fa-star"></i></div>
+        <span class="pq-text">Quem deseja fortalecer cabelos e unhas progressivamente</span>
+      </div>
+      <div class="pq-card pq-card--full reveal reveal-d1" style="grid-column: 1 / -1; max-width: 480px;">
+        <div class="pq-icon"><i class="fa-solid fa-flask-vial"></i></div>
+        <span class="pq-text">Quem valoriza uma rotina prática e baseada em ciência</span>
+      </div>
+    </div>
+
+    <div class="pq-cta reveal">
+      <p class="pq-cta-tagline">Um ritual simples para todos os dias.</p>
+      <a href="#cta-final" class="btn btn-primary">
+        Conhecer o Protocolo <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     MODO DE USO
+======================================================== -->
+<section class="s-uso section-pad" id="como-usar">
+  <div class="container">
+    <div class="uso-hd reveal">
+      <span class="eyebrow eyebrow--light">Como Usar</span>
+      <h2 class="section-title section-title--light">Como usar seu protocolo</h2>
+    </div>
+
+    <div class="uso-grid">
+      <div class="uso-card reveal">
+        <span class="uso-step-n">01</span>
+        <div class="uso-eyebrow">Colágeno Hidrolisado em Pó</div>
+        <p class="uso-instruction">Dilua 10g (1 medida) em 200ml de água ou bebida de sua preferência.</p>
+        <span class="uso-badge"><i class="fa-solid fa-clock"></i> 1x ao dia</span>
+      </div>
+      <div class="uso-card reveal reveal-d1">
+        <span class="uso-step-n">02</span>
+        <div class="uso-eyebrow">Biotina Plus</div>
+        <p class="uso-instruction">1 comprimido ao dia durante uma das refeições.</p>
+        <span class="uso-badge"><i class="fa-solid fa-clock"></i> 1x ao dia</span>
+      </div>
+      <div class="uso-card reveal reveal-d2">
+        <span class="uso-step-n">03</span>
+        <div class="uso-eyebrow">HialuSkin Ácido Hialurônico</div>
+        <p class="uso-instruction">1 comprimido ao dia durante uma das refeições.</p>
+        <span class="uso-badge"><i class="fa-solid fa-clock"></i> 1x ao dia</span>
+      </div>
+    </div>
+
+    <p class="uso-note reveal">
+      Pode ser utilizado de forma contínua ou com orientação de nutricionista ou médico.
+    </p>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     STATS / CREDIBILIDADE
+======================================================== -->
+<section class="s-stats section-pad">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-box reveal">
+        <div class="stat-num" data-count="20" data-suffix="+">0</div>
+        <div class="stat-desc">Anos de experiência</div>
+      </div>
+      <div class="stat-box reveal reveal-d1">
+        <div class="stat-num" data-count="100" data-suffix="+">0</div>
+        <div class="stat-desc">Produtos no portfólio</div>
+      </div>
+      <div class="stat-box reveal reveal-d2">
+        <div class="stat-num" data-text="ANVISA">—</div>
+        <div class="stat-desc">Certificado</div>
+      </div>
+      <div class="stat-box reveal reveal-d3">
+        <div class="stat-num" data-count="2000">0</div>
+        <div class="stat-desc">Fundada em</div>
+      </div>
+    </div>
+    <p class="stats-about reveal">
+      A Stem é uma das principais indústrias brasileiras de suplementos alimentares, fundada em 2000, sediada em Alvorada/RS.
+    </p>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     FAQ
+======================================================== -->
+<section class="s-faq section-pad" id="faq">
+  <div class="container">
+    <div class="faq-hd reveal">
+      <span class="eyebrow eyebrow--light">Dúvidas</span>
+      <h2 class="section-title section-title--light">Seu protocolo, sem dúvidas</h2>
+    </div>
+
+    <div class="faq-wrap">
+      <div class="faq-item reveal">
+        <button class="faq-btn" aria-expanded="false">
+          Quanto tempo dura o protocolo?
+          <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+        </button>
+        <div class="faq-body">
+          <div class="faq-body-inner">Cerca de 30 dias, considerando o consumo diário recomendado.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-d1">
+        <button class="faq-btn" aria-expanded="false">
+          Quando começam a aparecer os resultados?
+          <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+        </button>
+        <div class="faq-body">
+          <div class="faq-body-inner">Os resultados são progressivos. Entre 8 e 12 semanas já é possível perceber melhora no viço, na hidratação e na firmeza.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-d2">
+        <button class="faq-btn" aria-expanded="false">
+          Pode usar com outros suplementos?
+          <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+        </button>
+        <div class="faq-body">
+          <div class="faq-body-inner">Sim. Pode ser combinado com vitamina C, ômega 3 ou antioxidantes, conforme suas necessidades.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-d3">
+        <button class="faq-btn" aria-expanded="false">
+          É seguro para uso contínuo?
+          <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+        </button>
+        <div class="faq-body">
+          <div class="faq-body-inner">Sim, seguindo as recomendações de uso. Não indicado para gestantes, lactantes e crianças.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn" aria-expanded="false">
+          Onde posso adquirir?
+          <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+        </button>
+        <div class="faq-body">
+          <div class="faq-body-inner">Adquira seu protocolo em nossos parceiros Panvel ou na nossa loja virtual stem.com.br.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     CTA FINAL
+======================================================== -->
+<section class="s-cta" id="cta-final">
+  <div class="container">
+    <div class="cta-eyebrow">
+      <span class="eyebrow eyebrow--light">Comece hoje</span>
+    </div>
+    <h2 class="cta-title">
+      A Stem cuida de você hoje para que você siga vivendo os momentos que realmente importam.
+    </h2>
+    <div class="cta-btns">
+      <a href="#" class="btn btn-white btn-lg">
+        <i class="fa-solid fa-bag-shopping"></i> Comprar na Panvel
+      </a>
+      <a href="#" class="btn btn-outline btn-lg">
+        Acessar Loja Virtual <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+    </div>
+    <p class="cta-tagline">Ciência aplicada à sua rotina. Uma escolha diária por bem-estar.</p>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     FOOTER
+======================================================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand -->
+      <div>
+        <div class="footer-logo-row">
+          <img src="assets/logo-branco.png" alt="Stem Farmacêutica" class="footer-logo-img">
+          <div>
+            <div class="footer-brand-name">STEM</div>
+            <div class="footer-brand-sub">Farmacêutica</div>
+          </div>
+        </div>
+        <p class="footer-mission">Viver bem a vida toda. Suplementação inovadora para saúde, beleza, longevidade e qualidade de vida.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <!-- Linhas -->
+      <div>
+        <h4 class="footer-col-title">Linhas</h4>
+        <ul class="footer-links">
+          <li><a href="#">Beauty</a></li>
+          <li><a href="#">Clinical</a></li>
+          <li><a href="#">Nutrition</a></li>
+          <li><a href="#">Performance</a></li>
+        </ul>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <h4 class="footer-col-title">Links</h4>
+        <ul class="footer-links">
+          <li><a href="#">Início</a></li>
+          <li><a href="#">Sobre Nós</a></li>
+          <li><a href="#">Seja um Parceiro</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Onde Encontrar</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </div>
+
+      <!-- Contato -->
+      <div>
+        <h4 class="footer-col-title">Contato</h4>
+        <div class="footer-contact-row">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Rua Aldemar Vieira de Oliveira, 350, Distrito Industrial, Alvorada RS</span>
+        </div>
+        <div class="footer-contact-row">
+          <i class="fa-solid fa-phone"></i>
+          <span>(51) 3367-4033</span>
+        </div>
+        <div class="footer-contact-row">
+          <i class="fa-solid fa-envelope"></i>
+          <span>sac@stem.com.br</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Stem Farmacêutica. Todos os direitos reservados.</p>
+      <div class="footer-anvisa">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>Certificado ANVISA</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ========================================================
+     JAVASCRIPT
+======================================================== -->
+<script>
+  /* ---- Navbar scroll ---- */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  /* ---- Mobile menu ---- */
+  const hamburger  = document.getElementById('hamburger');
+  const mobileNav  = document.getElementById('mobileNav');
+
+  hamburger.addEventListener('click', () => {
+    const open = mobileNav.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open);
+  });
+
+  mobileNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.addEventListener('click', e => {
+    if (!navbar.contains(e.target) && !mobileNav.contains(e.target)) {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  /* ---- Smooth scroll with offset ---- */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const id = this.getAttribute('href');
+      if (id === '#') return;
+      const target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 72;
+      window.scrollTo({
+        top: target.getBoundingClientRect().top + window.scrollY - navH - 12,
+        behavior: 'smooth'
+      });
+    });
+  });
+
+  /* ---- FAQ accordion ---- */
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item   = btn.closest('.faq-item');
+      const body   = item.querySelector('.faq-body');
+      const isOpen = item.classList.contains('open');
+
+      /* close all */
+      document.querySelectorAll('.faq-item').forEach(fi => {
+        fi.classList.remove('open');
+        fi.querySelector('.faq-body').style.maxHeight = '0';
+        fi.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+      });
+
+      /* open clicked (if was closed) */
+      if (!isOpen) {
+        item.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ---- Scroll reveal ---- */
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  /* ---- Counter animation ---- */
+  function runCounter(el) {
+    const count  = el.getAttribute('data-count');
+    const suffix = el.getAttribute('data-suffix') || '';
+    const text   = el.getAttribute('data-text');
+
+    if (text) { el.textContent = text; return; }
+    if (!count) return;
+
+    const target = parseInt(count, 10);
+    const dur    = 1800;
+    const start  = performance.now();
+
+    function tick(now) {
+      const p    = Math.min((now - start) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 3); /* ease-out cubic */
+      el.textContent = Math.round(ease * target) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        runCounter(e.target);
+        counterObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.55 });
+
+  document.querySelectorAll('.stat-num[data-count], .stat-num[data-text]')
+          .forEach(el => counterObs.observe(el));
+</script>
+
+</body>
+</html>
