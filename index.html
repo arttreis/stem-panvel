@@ -1099,7 +1099,6 @@
       .protocolo-grid { grid-template-columns: 1fr; }
       .produto-wrap { grid-template-columns: 1fr; gap: 40px; }
       .produto-wrap--rev .produto-vis { order: 0; }
-      .vis-box { width: 240px; }
       .pq-grid { grid-template-columns: 1fr; }
       .pq-card--full { grid-column: 1; }
       .uso-grid { grid-template-columns: 1fr; gap: 14px; }
@@ -1108,11 +1107,28 @@
       .footer-bottom { flex-direction: column; align-items: flex-start; }
       .hero-ctas { flex-direction: column; }
       .hero-ctas .btn { width: 100%; justify-content: center; }
+
+      /* Âncoras: evita que o navbar fixo cubra o topo das seções */
+      section[id] { scroll-margin-top: var(--nav-h); }
+
+      /* Produto visual: empilhar vis-box e badge verticalmente */
+      .vis-box     { width: 220px; }
+      .produto-vis { flex-direction: column; align-items: center; gap: 12px; }
+      .stat-badge  { position: static; align-self: center; }
+
+      /* Vis-box: liberar aspect-ratio para acomodar a foto sem clipping */
+      .vis-box     { aspect-ratio: auto; height: auto; }
+      .prod-art    { padding: 20px 16px; gap: 8px; }
+      .prod-photo  { height: 160px; width: auto; max-width: 180px; }
+      /* Labels redundantes com o texto da seção — ocultar no mobile */
+      .prod-sku, .prod-name, .prod-tag { display: none; }
     }
 
     @media (max-width: 480px) {
       .cta-btns { flex-direction: column; align-items: center; }
       .cta-btns .btn { width: 100%; justify-content: center; max-width: 340px; }
+      .vis-box    { width: 200px; }
+      .prod-photo { height: 130px; max-width: 150px; }
     }
 
     /* ============================================================
